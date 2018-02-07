@@ -1,0 +1,21 @@
+---
+title: "Project Proposal"
+author: "Kathleen Tracey"
+date: "February 7, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Problem Statement
+
+In Major League Baseball being able to predict a player's career length and identify the turning point of performance decline.
+
+## Potential Clients
+
+Potential clients would be MLB teams considering trading or signing players and sports agents representing these players.  Being able to predict the efficacy of a player at certain points in their career would help determine how long a contract should be drafted for and a reasonable salary for the player in question.
+
+## Dataset
+The dataset I would use is the Lahman Baseball Database.  See <http://seanlahman.com/baseball-archive/statistics>.  The data is in .csv format and contains statistics from 1871 through the 2016 baseball season.
