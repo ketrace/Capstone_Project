@@ -15,7 +15,10 @@ In Major League Baseball being able to predict a player's career length and iden
 
 ## Potential Clients
 
-Potential clients would be MLB teams considering trading or signing players and sports agents representing these players.  Being able to predict the efficacy of a player at certain points in their career would help determine how long a contract should be drafted for and a reasonable salary for the player in question.
+Potential clients would be MLB teams considering trading or signing players and sports agents representing these players.  Being able to predict the efficacy of a player at certain points in their career would help determine how long a contract should be drafted for and a reasonable salary for the player in question.  
 
 ## Dataset
 The dataset I would use is the Lahman Baseball Database.  See <http://seanlahman.com/baseball-archive/statistics>.  The data is in .csv format and contains statistics from 1871 through the 2016 baseball season.
+
+## Approach to Solving Problem
+Using datasets from the Lahman Database we can map player performances over the course of their career and predict how long a player will perform well and at what point in a player's career will they peak in performance.  We can also look at if a certain amount of money is invested in a player, how many years would they need to play to make a profit.   
