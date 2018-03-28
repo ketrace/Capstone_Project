@@ -28,21 +28,29 @@ master_data <- master_data %>%
 fielding_data <- Fielding %>%
   select(playerID, yearID, POS, InnOuts, PO, A, E)
 
+#calculate fielding percentage - measure of fielder's capability
+fielding_data <- fielding_data %>%
+  mutate(FPCT = (PO + A)/(PO + A + E))
+
 
 #get relevant batting data from Batting data set
 batting_data <- Batting %>%
-  select(playerID, yearID, AB, R, H, X2B, X3B, HR, RBI)
+  select(playerID, yearID, AB, R, H, X2B, X3B, HR, RBI, BB, SF, HBP)
+
 
 #get relevant pitching data from Pitching data set
 pitching_data <- Pitching %>%
   select(playerID, yearID, W, L, G, BAOpp, ERA, BB, SO)
 
+#calculate strikeouts/walks ratio for pitchers K/BB
+pitching_data <- pitching_data %>%
+  mutate(KperBB = SO/BB)
 
 #get salary data for each player each year
 player_salary <- Salaries %>%
   select(playerID, yearID, salary)
 
-#merge data frames together for position players(nonpitchersn ***need to remove pitchers from position player dataframe
+#merge data frames together for position players
 
 all_positions <- left_join(master_data, fielding_data)
 
