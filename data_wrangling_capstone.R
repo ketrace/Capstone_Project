@@ -18,11 +18,13 @@ master_data <- master_data %>%
 master_data <- master_data %>%
   separate(finalGame, c("Final_Year", "F_month", "F_day"), sep = "-", remove = TRUE)
 
+#remove Deb_month, Deb_day and F_month, F_day
+ master_data <- master_data %>%
+   subset(select = -c(Deb_Month, Deb_Day, F_month, F_day))
 
 #create column for career length (in years)
 master_data <- master_data %>%
   mutate(Career_Length = as.numeric(Final_Year) - as.numeric(Debut_Year))
-
 
 #get relevant fielding data from Fielding data set
 fielding_data <- Fielding %>%
@@ -58,12 +60,20 @@ all_positions <- left_join(all_positions, batting_data)
 
 all_positions <- left_join(all_positions, player_salary)
 
+#create column to represent which year of career
+all_positions <- all_positions %>%
+  mutate(Career_Year = yearID - as.numeric(Debut_Year) + 1 )
+
 #create subset of all_positions to remove rows that correspond to pitchers
 all_posplayers <- all_positions %>%
   subset(POS != "P")
 
 #create data frame for pitchers
 all_pitching <- inner_join(master_data, pitching_data)
+
+#create career year column for pitchers
+all_pitching <- all_pitching %>%
+  mutate(Career_Year = yearID - as.numeric(Debut_Year) + 1 )
 
 #write CSV for all position players
 write.csv(all_posplayers, "all_posplayers.csv")
