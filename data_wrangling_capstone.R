@@ -37,7 +37,7 @@ fielding_data <- fielding_data %>%
 
 #get relevant batting data from Batting data set
 batting_data <- Batting %>%
-  select(playerID, yearID, AB, R, H, X2B, X3B, HR, RBI, BB, SF, HBP)
+  select(playerID, yearID, G, AB, R, H, X2B, X3B, HR, RBI, BB, SF, HBP)
 
 
 #get relevant pitching data from Pitching data set
@@ -54,11 +54,11 @@ player_salary <- Salaries %>%
 
 #merge data frames together for position players
 
-all_positions <- left_join(master_data, fielding_data)
+all_positions <- left_join(master_data, fielding_data, by = "playerID")
 
-all_positions <- left_join(all_positions, batting_data)
+all_positions <- left_join(all_positions, batting_data, by = c("playerID", "yearID"))
 
-all_positions <- left_join(all_positions, player_salary)
+all_positions <- inner_join(all_positions, player_salary, by = c("playerID", "yearID"))
 
 #create column to represent which year of career
 all_positions <- all_positions %>%
@@ -69,7 +69,7 @@ all_posplayers <- all_positions %>%
   subset(POS != "P")
 
 #create data frame for pitchers
-all_pitching <- inner_join(master_data, pitching_data)
+all_pitching <- inner_join(master_data, pitching_data, by = "playerID")
 
 #create career year column for pitchers
 all_pitching <- all_pitching %>%
