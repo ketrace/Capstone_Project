@@ -68,6 +68,11 @@ all_positions <- all_positions %>%
 all_posplayers <- all_positions %>%
   subset(POS != "P")
 
+# group by player by year and count number of games
+all_posplayers <- all_posplayers %>%
+  group_by(playerID, yearID, add = TRUE) %>%
+  summarise(G = n())
+
 #create data frame for pitchers
 all_pitching <- inner_join(master_data, pitching_data, by = "playerID")
 
